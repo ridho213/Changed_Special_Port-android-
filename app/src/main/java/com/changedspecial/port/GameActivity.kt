@@ -30,7 +30,6 @@ class GameActivity : SDLActivity() {
         prefs = Prefs(this)
         GameFiles.writeConfig(this, prefs)
         Renderer.apply(this, prefs.renderer)
-        try { android.system.Os.chdir(GameFiles.dir(this).absolutePath) } catch (_: Throwable) {}
         super.onCreate(savedInstanceState)
         binds = prefs.binds()
         if (prefs.vpadEnabled) {

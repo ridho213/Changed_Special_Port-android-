@@ -82,7 +82,7 @@ class LauncherActivity : Activity() {
 
         // ---- Gamepad
         add(h("Gamepad"))
-        val pads = InputDevice.getDeviceIds().mapNotNull { InputDevice.getDevice(it) }
+        val pads = InputDevice.getDeviceIds().toList().mapNotNull { InputDevice.getDevice(it) }
             .filter { (it.sources and InputDevice.SOURCE_GAMEPAD) == InputDevice.SOURCE_GAMEPAD || (it.sources and InputDevice.SOURCE_JOYSTICK) == InputDevice.SOURCE_JOYSTICK }
         add(TextView(this).apply { text = if (pads.isEmpty()) "Tidak ada gamepad tersambung" else "Terdeteksi: " + pads.joinToString { it.name } })
         add(Button(this).apply { text = "Gamepad bind"; setOnClickListener { startActivity(Intent(this@LauncherActivity, BindActivity::class.java)) } })
